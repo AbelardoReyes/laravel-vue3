@@ -84,13 +84,18 @@ class Categoria extends BaseController
     }
     public function vistaEditar(Request $request)
     {
-        $categoria = CategoriaModel::find($request->id);
-        $find = [
+        $categoriaFind = CategoriaModel::find($request->id);
+        $categoria = [
+            'id' => $categoriaFind->id,
+            'nombre' => $categoriaFind->nombre,
+            'descripcion' => $categoriaFind->descripcion,
+            'edit' => route('categoria.editarCategoria', ['id' => $categoriaFind->id]),
+        ];
+        $rutas = [
             'index' => route('categoria.index'),
-            'update' => route('categoria.editarCategoria', ['id' => $categoria->id]),
         ];
         return Inertia::render('Zapateria/Categoria/CategoriaEdit', [
-            'rutas' => $find, 'categoria' => $categoria
+            'rutas' => $rutas, 'categoria' => $categoria
         ]);
     }
     public function eliminarCategoria(Request $request)

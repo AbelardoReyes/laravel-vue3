@@ -27,14 +27,8 @@ defineProps({
     </div>
     <!--Tablas-->
     <br>
-    <div class="grid grid-cols-3 pl-10">
-        <div class="">
-            <TablaCalzadoVue :calzados="calzados" :categorias="categorias" />
-        </div>
-        <div></div>
-        <div class="">
-            <FormularioCalzadosVue :calzados="calzados" :categorias="categorias" :errors="errors" />
-        </div>
+    <div class="flex justify-between gap-36 pl-24">
+        <TablaCalzadoVue :calzados="calzados" :rutas="rutas" :categorias="categorias" />
+        <FormularioCalzadosVue :calzados="calzados" :categorias="categorias" :errors="errors" />
     </div>
-    {{ calzados }}
 </template>

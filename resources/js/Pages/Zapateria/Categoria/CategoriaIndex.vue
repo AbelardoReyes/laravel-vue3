@@ -27,13 +27,9 @@ defineProps({
   </div>
   <!--Tablas-->
   <br>
-  <div class="grid grid-cols-2 pl-20">
-    <div class="">
+  <div class="flex justify-between gap-44 pl-20">
       <TablaCategorias :categorias="categorias" :errors="errors" />
-    </div>
-    <div class="pl-20">
       <FormularioCategorias :categorias="categorias" :errors="errors" />
-    </div>
   </div>
   {{ rutas }}
 </template>

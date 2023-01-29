@@ -56,14 +56,18 @@ Route::prefix('/zapateria/categoria')->group(function () {
     Route::get('/formularioCalzado/{id}', [Categoria::class, 'formularioCalzado'])->name('categoria.formularioCalzado');
     Route::post('/crearCalzado', [Categoria::class, 'crearCalzado'])->name('categoria.crearCalzado');
 });
+
+
 Route::prefix('/zapateria/calzado')->group(function () {
     //Index
     Route::get('/index', [Calzado::class, 'index'])->name('calzado.index');
     Route::post(('/crearNuevoCalzado'), [Calzado::class, 'crearNuevoCalzado'])->name('calzado.crearNuevoCalzado');
     //Rutas para editar
-
+    Route::get('/vistaEditar/{id}', [Calzado::class, 'vistaEditar'])->name('calzado.vistaEditar');
+    Route::put('/editarCalzado', [Calzado::class, 'editarCalzado'])->name('calzado.editarCalzado');
     //Rutas para eliminar
     Route::get('/vistaEliminar/{id}', [Calzado::class, 'vistaEliminar'])->name('calzado.vistaEliminar');
+    Route::delete('/eliminarCalzado/{id}', [Calzado::class, 'eliminarCalzado'])->name('calzado.eliminarCalzado');
 });
 
 

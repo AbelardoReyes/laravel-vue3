@@ -16,13 +16,14 @@ const form = reactive({
 })
 
 function submit() {
-    router.put('/zapateria/categoria/editarCategoria/{{categoria.id}}', form)
+    router.put(props.categoria.edit, form)
 }
 
 </script>
 
 
 <template>
+    {{ categoria }}
     <div class="container">
         <div class="grid grid-cols-3 pt-10 pl-20">
             <div class>

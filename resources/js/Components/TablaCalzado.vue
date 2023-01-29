@@ -4,6 +4,7 @@ import { defineProps } from 'vue';
 
 defineProps({
     calzados: Object,
+    rutas: Object,
     categorias: Object,
 });
 </script>
@@ -21,6 +22,7 @@ defineProps({
                         <th class="pl-1 pr-1 border border-slate-600">Existencia</th>
                         <th class="pl-1 pr-1 border border-slate-600">Precio</th>
                         <th class="pl-1 pr-1 border border-slate-600">Categoria</th>
+                        <th class="pl-3 pr-3 border border-slate-600">Editar</th>
                         <th class="pl-3 pr-3 border border-slate-600">Eliminar</th>
                     </tr>
                 </thead>
@@ -32,12 +34,17 @@ defineProps({
                         <td>{{ calzado.modelo }}</td>
                         <td>{{ calzado.existencia }}</td>
                         <td>{{ calzado.precio }}</td>
-                        <td>{{ calzado.categoria.nombre }}</td>
+                        <td>{{ calzado.categoria }}</td>
                         <td>
+                            <Link :href="calzado.viewEdit" method="get" >Edit</Link>
+                        </td>
+                        <td>
+                            <Link :href="calzado.viewDelete" method="get" :data="{calzado:calzado}">Delete</Link>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
 </template>

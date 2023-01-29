@@ -17,7 +17,7 @@ class Calzado extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request)
     {
-        $calzadoAuctualizar = CalzadoModel::join('categorias','calzados.categoria','=','categorias.id')->select('calzados.*','categorias.id as categoriaID','categorias.nombre')->get();
+        $calzadoAuctualizar = CalzadoModel::join('categorias', 'calzados.categoria', '=', 'categorias.id')->select('calzados.*', 'categorias.id as categoriaID', 'categorias.nombre')->get();
         $calzado = $calzadoAuctualizar->map(function ($calzado) {
             $Arreglo = [
                 'id' => $calzado->id,
@@ -28,6 +28,7 @@ class Calzado extends BaseController
                 'existencia' => $calzado->existencia,
                 'categoria' => $calzado->nombre,
                 'viewDelete' => route('calzado.vistaEliminar', ['id' => $calzado->id]),
+                'viewEdit' => route('calzado.vistaEditar', ['id' => $calzado->id]),
             ];
             return $Arreglo;
         });
@@ -40,7 +41,6 @@ class Calzado extends BaseController
     }
     public function crearNuevoCalzado(Request $request)
     {
-        dd($request->all());
         $validator = Validator::make($request->all(), [
             'marca' => ['required', 'max:50'],
             'color' => ['required', 'max:50'],
@@ -68,6 +68,55 @@ class Calzado extends BaseController
     }
     public function vistaEliminar(Request $request)
     {
-        return Inertia::render('zapateria/calzado/vistaEliminar');
+        $calzadofind = CalzadoModel::find($request->id);
+        $calzado = [
+            'id' => $calzadofind->id,
+            'marca' => $calzadofind->marca,
+            'color' => $calzadofind->color,
+            'precio' => $calzadofind->precio,
+            'modelo' => $calzadofind->modelo,
+            'existencia' => $calzadofind->existencia,
+            'categoria' => $calzadofind->categoria,
+            'delete' => route('calzado.eliminarCalzado', ['id' => $calzadofind->id]),
+            'index' => route('calzado.index'),
+        ];
+
+        return Inertia::render('Zapateria/Calzado/CalzadoDelete', ['calzado' => $calzado]);
+    }
+
+    public function eliminarCalzado(Request $request)
+    {
+        $find = CalzadoModel::find($request->id);
+        $find->delete();
+        return redirect()->route('calzado.index');
+    }
+    public function vistaEditar(Request $request)
+    {
+        $categorias = CategoriaModel::all();
+        $calzadofind = CalzadoModel::find($request->id);
+        $calzado = [
+            'id' => $calzadofind->id,
+            'marca' => $calzadofind->marca,
+            'color' => $calzadofind->color,
+            'precio' => $calzadofind->precio,
+            'modelo' => $calzadofind->modelo,
+            'existencia' => $calzadofind->existencia,
+            'categoria' => $calzadofind->categoria,
+            'index' => route('calzado.index'),
+            'edit' => route('calzado.editarCalzado', ['id' => $calzadofind->id]),
+        ];
+        return Inertia::render('Zapateria/Calzado/CalzadoFormularioEditar', ['calzado' => $calzado, 'categorias' => $categorias]);
+    }
+    public function editarCalzado(Request $request)
+    {
+        $calzadoEditado = CalzadoModel::find($request->id);
+        $calzadoEditado->marca = $request->marca;
+        $calzadoEditado->color = $request->color;
+        $calzadoEditado->precio = $request->precio;
+        $calzadoEditado->modelo = $request->modelo;
+        $calzadoEditado->existencia = $request->existencia;
+        $calzadoEditado->categoria = $request->categoria;
+        $calzadoEditado->save();
+        return redirect()->route('calzado.index');
     }
 }
