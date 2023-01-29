@@ -19,6 +19,10 @@ class Categoria extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index()
     {
+        $rutas = [
+            'index' => route('categoria.index'),
+            'indexCalzado' => route('calzado.index'),
+        ];
         return Inertia::render('Zapateria/Categoria/CategoriaIndex', [
             'categorias' => CategoriaModel::all()->map(function ($categoria) {
                 return [
@@ -31,7 +35,7 @@ class Categoria extends BaseController
                     'viewEdit' => route('categoria.vistaEditar', ['id' => $categoria->id]),
                     'viewCalzado' => route('categoria.formularioCalzado', ['id' => $categoria->id]),
                 ];
-            })
+            }), 'rutas' => $rutas
         ]);
     }
     public function formulario()

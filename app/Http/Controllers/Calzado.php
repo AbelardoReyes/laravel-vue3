@@ -17,7 +17,7 @@ class Calzado extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request)
     {
-        $calzadoAuctualizar = CalzadoModel::join('categorias','calzados.categoria','=','categorias.id')->select('calzados.*','categorias.id as categoriaID','categorias.nombre')->where('calzados.categoria', $request->filtro)->get();
+        $calzadoAuctualizar = CalzadoModel::join('categorias','calzados.categoria','=','categorias.id')->select('calzados.*','categorias.id as categoriaID','categorias.nombre')->get();
         $calzado = $calzadoAuctualizar->map(function ($calzado) {
             $Arreglo = [
                 'id' => $calzado->id,
@@ -27,7 +27,7 @@ class Calzado extends BaseController
                 'modelo' => $calzado->modelo,
                 'existencia' => $calzado->existencia,
                 'categoria' => $calzado->nombre,
-                'vistaEliminar' => route('calzado.vistaEliminar', ['id' => $calzado->id]),
+                'viewDelete' => route('calzado.vistaEliminar', ['id' => $calzado->id]),
             ];
             return $Arreglo;
         });
@@ -66,7 +66,8 @@ class Calzado extends BaseController
         $calzado->save();
         return redirect()->route('calzado.index');
     }
-    public function vistaEliminar()
+    public function vistaEliminar(Request $request)
     {
+        return Inertia::render('zapateria/calzado/vistaEliminar');
     }
 }

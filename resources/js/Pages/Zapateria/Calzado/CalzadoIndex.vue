@@ -29,7 +29,7 @@ defineProps({
     <br>
     <div class="grid grid-cols-3 pl-10">
         <div class="">
-            <TablaCalzadoVue :calzados="calzados" :categorias="categorias" :rutas="rutas" />
+            <TablaCalzadoVue :calzados="calzados" :categorias="categorias" />
         </div>
         <div></div>
         <div class="">
