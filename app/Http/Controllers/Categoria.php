@@ -131,6 +131,27 @@ class Categoria extends BaseController
     }
     public function crearCalzado(Request $request)
     {
+        $Validator = Validator::make($request->all(), [
+            'marca' => ['required', 'max:20'],
+            'modelo' => ['required', 'max:20'],
+            'color' => ['required', 'max:20'],
+            'existencia' => ['required', 'max:20'],
+            'precio' => ['required', 'max:20'],
+        ], [
+            'marca.required' => 'El campo marca es requerido',
+            'marca.max' => 'El campo marca no puede tener mas de 20 caracteres',
+            'modelo.required' => 'El campo modelo es requerido',
+            'modelo.max' => 'El campo modelo no puede tener mas de 20 caracteres',
+            'color.required' => 'El campo color es requerido',
+            'color.max' => 'El campo color no puede tener mas de 20 caracteres',
+            'existencia.required' => 'El campo existencia es requerido',
+            'existencia.max' => 'El campo existencia no puede tener mas de 20 caracteres',
+            'precio.required' => 'El campo precio es requerido',
+            'precio.max' => 'El campo precio no puede tener mas de 20 caracteres',
+        ]);
+        if ($Validator->fails()) {
+            return redirect()->back()->withErrors($Validator->errors());
+        }
         $calzado = new CalzadoModel();
         $calzado->marca = $request->marca;
         $calzado->modelo = $request->modelo;

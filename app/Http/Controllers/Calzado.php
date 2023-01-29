@@ -109,12 +109,27 @@ class Calzado extends BaseController
     }
     public function editarCalzado(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'marca' => ['required', 'max:50'],
+            'color' => ['required', 'max:50'],
+            'precio' => ['required', 'numeric'],
+            'modelo' => ['required', 'max:50'],
+            'existencia' => ['required', 'numeric'],
+            'categoria' => ['required', 'numeric'],
+        ], [
+            'required' => 'El campo :attribute es requerido',
+            'max' => 'El campo :attribute no puede tener mas de :max caracteres',
+            'numeric' => 'El campo :attribute debe ser numerico',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         $calzadoEditado = CalzadoModel::find($request->id);
         $calzadoEditado->marca = $request->marca;
         $calzadoEditado->color = $request->color;
         $calzadoEditado->precio = $request->precio;
         $calzadoEditado->modelo = $request->modelo;
-        $calzadoEditado->existencia = $request->existencia;
+        $calzadoEditado->existencia += $request->existencia;
         $calzadoEditado->categoria = $request->categoria;
         $calzadoEditado->save();
         return redirect()->route('calzado.index');
