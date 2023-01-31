@@ -83,9 +83,9 @@ function submit() {
                     <input v-if="mostrarInput" id="categoriaId" v-model="form.categoriaId"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                     <br>
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-110">Submit</button>
                     <button class="pr-10"></button>
-                    <Link :href="rutas.index">Regresar</Link>
+                    <Link :href="rutas.index" class="bg-gray-400 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-110">Regresar</Link>
                 </form>
             </div>
             <dic></dic>

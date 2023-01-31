@@ -1,7 +1,16 @@
 <script setup>
 import { Link } from '@inertiajs/vue3'
 import { defineProps } from 'vue';
+import { reactive } from 'vue'
+import { router } from '@inertiajs/vue3'
 
+const form = reactive({
+    filtro: null
+})
+
+function submit() {
+    router.get('/zapateria/calzado/index', form)
+}
 defineProps({
     calzados: Object,
     rutas: Object,
@@ -12,6 +21,14 @@ defineProps({
     <div class="container grid grid-cols-1 ">
         <!--Div para crear la tabla-->
         <div class="">
+            <form @submit.prevent="submit" class="flex">
+                <label for="filtro">Mostrar por:</label>
+                <select name="filtro" id="filtro" v-model="form.filtro"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-white dark:border-white dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option v-for="categoria in categorias" :key="categoria.id" :value="categoria.id">{{ categoria.nombre }}</option>
+                </select>
+                <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-110 ">Mostrar</button>
+            </form>
             <table class="table-auto text-center  border-separate border border-slate-500">
                 <thead class="bg-indigo-00">
                     <tr class="">

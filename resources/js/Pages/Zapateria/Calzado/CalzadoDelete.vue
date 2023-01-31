@@ -7,7 +7,6 @@ defineProps({
 });
 </script>
 <template>
-    {{ calzado  }}
     <div class="container grid grid-cols-3 pt-10 pl-20">
         <div></div>
         <div class="shadow-2xl text-center p-10 border redonded">

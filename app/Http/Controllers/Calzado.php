@@ -17,7 +17,11 @@ class Calzado extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function index(Request $request)
     {
-        $calzadoAuctualizar = CalzadoModel::join('categorias', 'calzados.categoria', '=', 'categorias.id')->select('calzados.*', 'categorias.id as categoriaID', 'categorias.nombre')->get();
+        if ($request->filtro != null) {
+            $calzadoAuctualizar = CalzadoModel::join('categorias', 'calzados.categoria', '=', 'categorias.id')->select('calzados.*', 'categorias.id as categoriaID', 'categorias.nombre')->where('calzados.categoria', $request->filtro)->get();
+        } else {
+            $calzadoAuctualizar = CalzadoModel::join('categorias', 'calzados.categoria', '=', 'categorias.id')->select('calzados.*', 'categorias.id as categoriaID', 'categorias.nombre')->get();
+        }
         $calzado = $calzadoAuctualizar->map(function ($calzado) {
             $Arreglo = [
                 'id' => $calzado->id,
@@ -32,6 +36,7 @@ class Calzado extends BaseController
             ];
             return $Arreglo;
         });
+
         $categorias = CategoriaModel::all();
         $rutas = [
             'index' => route('calzado.index'),

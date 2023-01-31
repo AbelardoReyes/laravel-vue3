@@ -31,5 +31,4 @@ defineProps({
       <TablaCategorias :categorias="categorias" :errors="errors" />
       <FormularioCategorias :categorias="categorias" :errors="errors" />
   </div>
-  {{ rutas }}
 </template>
