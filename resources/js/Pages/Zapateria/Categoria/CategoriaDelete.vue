@@ -6,6 +6,7 @@ defineProps({
     errors: Object,
 });
 </script>
+
 <template>
     <div class="container grid grid-cols-3 pt-10 pl-20">
         <div></div>

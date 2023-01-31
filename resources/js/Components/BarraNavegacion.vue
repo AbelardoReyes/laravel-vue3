@@ -1,17 +1,21 @@
-<script>
-
+<script setup>
 import { Link } from '@inertiajs/vue3';
-import { defineComponent } from 'vue';
-import { defineProps } from 'vue';
-defineProps({
-    categorias: Object,
-    rutas: Array,
-    errors: Object,
-});
-export default defineComponent({
-    components: { Link },
-});
+console.log('BarraNavegacion');
 </script>
 <template>
+    <div class="bg-gray-700">
+        <nav class="text-xl pt-3 pl-5 pb-3">
+            <button
+                class="transition ease-in-out delay-150 bg-gray-700 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600 duration-300 rounded-lg text-white p-2">
+                <Link href="/zapateria/categoria/index" method="get" as="button">Categorias</Link>
+            </button>
+            <button class="pl-5"></button>
+            <button class="pl-5"></button>
 
+            <Link href="/zapateria/calzado/index" method="get" as="button" class="transition ease-in-out delay-150 bg-gray-700 hover:-translate-y-1 hover:scale-110 hover:bg-gray-600
+      duration-300 rounded-lg text-white p-2">Calzados</Link>
+            <br>
+        </nav>
+    </div>
+    <slot/>
 </template>

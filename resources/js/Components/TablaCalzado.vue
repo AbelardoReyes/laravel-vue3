@@ -17,6 +17,16 @@ defineProps({
     categorias: Object,
 });
 </script>
+<script>
+import BarraNavegacion from '@/Components/BarraNavegacion.vue';
+
+export default {
+    // Using shorthand syntax...
+    layout: BarraNavegacion,
+}
+console.log('TablaCalzado');
+</script>
+
 <template>
     <div class="container grid grid-cols-1 ">
         <!--Div para crear la tabla-->

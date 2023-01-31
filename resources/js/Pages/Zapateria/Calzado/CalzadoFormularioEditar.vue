@@ -15,7 +15,7 @@ const form = reactive({
     color: props.calzado.color,
     modelo: props.calzado.modelo,
     precio: props.calzado.precio,
-    existencia: props.calzado.existencia,
+    existencia: null,
     categoria: null,
 })
 
@@ -70,7 +70,7 @@ function submit() {
                         {{ errors.existencia }}
                     </div>
                     <input id="existencia" v-model="form.existencia" type="number"
-                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder="Ingrese la canitdad a sumar" />
                     <!--Error modelo-->
                     <div v-if="errors.categoria"
                         class="p-1 text-sm text-red-800 rounded-lg bg-red-200  dark:text-red-700" role="alert">

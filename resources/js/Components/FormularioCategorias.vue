@@ -16,9 +16,16 @@ const form = reactive({
 function submit() {
     router.post('/zapateria/categoria/crearCategoria', form)
 }
-
 </script>
+<script>
+import BarraNavegacion from '@/Components/BarraNavegacion.vue';
 
+export default {
+    // Using shorthand syntax...
+    layout: BarraNavegacion,
+}
+console.log('FormularioCategorias');
+</script>
 <template>
     <div class="container">
         <div class="">
@@ -38,8 +45,8 @@ function submit() {
                         placeholder="Nombre de la categoria" />
                     <br>
                     <!--Error descripcion-->
-                    <div v-if="errors.descripcion" class="p-1 text-sm text-red-800 rounded-lg bg-red-200  dark:text-red-700"
-                        role="alert">
+                    <div v-if="errors.descripcion"
+                        class="p-1 text-sm text-red-800 rounded-lg bg-red-200  dark:text-red-700" role="alert">
                         {{ errors.descripcion }}
                     </div>
                     <label for="descripcion">Descripcion:</label>

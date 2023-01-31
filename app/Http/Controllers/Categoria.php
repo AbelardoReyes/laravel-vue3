@@ -72,6 +72,7 @@ class Categoria extends BaseController
             'nombre.max' => 'El campo nombre no puede tener mas de 20 caracteres',
             'descripcion.required' => 'El campo descripcion es requerido',
             'descripcion.max' => 'El campo descripcion no puede tener mas de 50 caracteres',
+
         ]);
         if ($Validator->fails()) {
             return redirect()->back()->withErrors($Validator->errors());
@@ -135,19 +136,11 @@ class Categoria extends BaseController
             'marca' => ['required', 'max:20'],
             'modelo' => ['required', 'max:20'],
             'color' => ['required', 'max:20'],
-            'existencia' => ['required', 'max:20'],
-            'precio' => ['required', 'max:20'],
+            'existencia' => ['required', 'max:300'],
+            'precio' => ['required'],
         ], [
-            'marca.required' => 'El campo marca es requerido',
-            'marca.max' => 'El campo marca no puede tener mas de 20 caracteres',
-            'modelo.required' => 'El campo modelo es requerido',
-            'modelo.max' => 'El campo modelo no puede tener mas de 20 caracteres',
-            'color.required' => 'El campo color es requerido',
-            'color.max' => 'El campo color no puede tener mas de 20 caracteres',
-            'existencia.required' => 'El campo existencia es requerido',
-            'existencia.max' => 'El campo existencia no puede tener mas de 20 caracteres',
-            'precio.required' => 'El campo precio es requerido',
-            'precio.max' => 'El campo precio no puede tener mas de 20 caracteres',
+            'required' => 'El campo :attribute es requerido',
+            'max' => 'El campo :attribute no puede tener mas de :max caracteres',
         ]);
         if ($Validator->fails()) {
             return redirect()->back()->withErrors($Validator->errors());

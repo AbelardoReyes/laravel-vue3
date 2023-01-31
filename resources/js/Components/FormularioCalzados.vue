@@ -23,6 +23,16 @@ function submit() {
     router.post('/zapateria/calzado/crearNuevoCalzado', form)
 }
 </script>
+<script>
+import BarraNavegacion from '@/Components/BarraNavegacion.vue';
+
+export default {
+    // Using shorthand syntax...
+    layout: BarraNavegacion,
+}
+console.log('FormularioCalzados');
+</script>
+
 <template>
     <div>
     </div>
@@ -83,7 +93,8 @@ function submit() {
                     }}</option>
                 </select>
                 <br>
-                <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-110">Guardar</button>
+                <button type="submit"
+                    class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-110">Guardar</button>
                 <button class="pr-10"></button>
             </form>
         </div>

@@ -5,8 +5,18 @@ defineProps({
     categorias: Object,
     errors: Object,
 });
-
 </script>
+<script>
+import BarraNavegacion from '@/Components/BarraNavegacion.vue';
+
+export default {
+    // Using shorthand syntax...
+    layout: BarraNavegacion,
+}
+console.log('TablaCategorias');
+</script>
+
+
 <template>
     <div class="container grid grid-cols-1 pl-5">
         <!--Div para crear la tabla-->
@@ -14,7 +24,7 @@ defineProps({
             <table class="table-auto text-center  border-separate border border-slate-500">
                 <thead class="bg-indigo-00">
                     <tr class="">
-                        <th class="pl-5 pr-5  border border-slate-600">ID</th>
+                        <th class="pl-1 pr-1  border border-slate-600">ID</th>
                         <th class="pl-5 pr-5 border border-slate-600 ">Categoria</th>
                         <th class="pl-10 pr-10 border border-slate-600">Descripcion</th>
                         <th class="pl-5 pr-5 border border-slate-600">Nuevo Calzado</th>

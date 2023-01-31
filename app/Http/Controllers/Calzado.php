@@ -51,7 +51,7 @@ class Calzado extends BaseController
             'color' => ['required', 'max:50'],
             'precio' => ['required', 'numeric'],
             'modelo' => ['required', 'max:50'],
-            'existencia' => ['required', 'numeric'],
+            'existencia' => ['required', 'numeric','max:300'],
             'categoria' => ['required', 'numeric'],
         ], [
             'required' => 'El campo :attribute es requerido',
@@ -119,12 +119,11 @@ class Calzado extends BaseController
             'color' => ['required', 'max:50'],
             'precio' => ['required', 'numeric'],
             'modelo' => ['required', 'max:50'],
-            'existencia' => ['required', 'numeric'],
+            'existencia' => ['required', 'numeric','max:300'],
             'categoria' => ['required', 'numeric'],
         ], [
             'required' => 'El campo :attribute es requerido',
             'max' => 'El campo :attribute no puede tener mas de :max caracteres',
-            'numeric' => 'El campo :attribute debe ser numerico',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
